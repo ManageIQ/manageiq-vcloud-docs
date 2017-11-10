@@ -1,0 +1,16 @@
+= Prerequisite
+
+To include vCloudDirector provider into the Red Hat CloudForms, the following pieces are required to be installed:
+
+. Red Hat CloudForms
+. vCloudDirector
+.. Valid Organisation (Tenant) in vCloudDirector
+.. Valid account in vCloudDirector Organisation.
+
+== Installing Red Hat CloudForms Server 4.x
+To install Red Hat CloudForms Server, please refer to
+link:https://access.redhat.com/documentation/en/red-hat-cloudforms/[Cloud Forms installation guide]
+
+== Installing vCloudDirector
+To install VMware vCloudDirector, please refer to:
+link:https://https://docs.vmware.com/en/vCloud-Director/9.0/vcd_90_install.pdf[vCloudDirector Installation guide]

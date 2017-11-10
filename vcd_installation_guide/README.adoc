@@ -1,0 +1,4 @@
+
+= vCloudDirector provider Installation Guide
+
+{{book.project.name}} {{book.project.version}}
