@@ -6,7 +6,7 @@ Note: this step is optional. It is appropriate in environments where vCloudDirec
 The VMware vCloudDirector (vCD) can distibute events and notifications to other AMPQ server allowing the distribution of messages to other clients, in our case RedHat CloudForms or ManageIQ. Please find below the shema of this setting. Please note that the steps in this manual must be repeated for each vCD organization that you want to support Notifications for.
 
 .Image Title
-image::.../../images/docs_vcd_rabbitmq01_overview.jpg[title="Schematic representation of the desired ManageIQ/CloudForms configuration."]
+image::../../images/docs_vcd_rabbitmq01_overview.jpg[title="Schematic representation of the desired ManageIQ/CloudForms configuration."]
 
 
 == Prerequisites
