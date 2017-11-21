@@ -10,7 +10,7 @@
 Due to the limited support of vCloudDirector provider some functionalities are not straight forward. The most exceptional is provision of VM. This is not possible even through the vCloudDirector without building the vApp. More details on this matter is in Provisioning section.
 
 == Authorisation
-The authorisation is a basic functionality that creates a link from CloudForms to vCloudDirector and enables collecting data from vCloudDirector. The Authorisation is possible through vCloud director organisation (tenant) accounts. More details on adding new provider is described in link:vcd-release-notes.adoc[Add new vCloudDirector provider].
+The authorisation is a basic functionality that creates a link from CloudForms to vCloudDirector and enables collecting data from vCloudDirector. The Authorisation is possible through vCloud director organisation (tenant) accounts. More details on adding new provider is described in link:adding-vcd-provider.adoc[Add new vCloudDirector provider].
 
 
 == Inventory
@@ -28,7 +28,7 @@ Power operations cover the control functionality over the VMs and vApps, similar
  * Set retirement date
  * Retire vApp
 
-.Instance opreations are
+.Instance opreations are:
 * Start
 * Stop
 * Suspend
