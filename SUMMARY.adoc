@@ -7,6 +7,6 @@
 .. link:vcd_installation_guide/topics/vcd-rabbitmq.adoc[Event Monitoring with RabbitMQ]
 .. link:vcd_installation_guide/topics/vcd-ampq.adoc[Enable AMPQ Events in vCloudDirector]
 .. link:vcd_installation_guide/topics/adding_vcd_provider.adoc[Adding a VMware vCloudDirector in Red Hat CloudForms]
-.. link:vcd_installation_guide/topics/vcd-vapp-provision.adoc[alt="vApp Provision in vCloudDirector through Red Hat CloudForms"]
+.. link:vcd_installation_guide/topics/vcd-vapp-provision.adoc["vApp Provision in vCloudDirector through Red Hat CloudForms"]
 
 
