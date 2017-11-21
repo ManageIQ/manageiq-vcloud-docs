@@ -40,6 +40,6 @@ The vCloudDirector provider for CloudForms has limited functionality and does no
 
 
 == Events
-The events from vCloudDirector are published on RabbitMQ, which filters the events per Organization (tenant). In the CloudForms there is a tab for setting RabbitMQ credentials in provider's configuration form. More details on enabling RabbitMQ is descibed in link:vcd_installation_guide/topics/vcd-rabbitmq.adoc[Event Monitoring with RabbitMQ].
+The events from vCloudDirector are published on RabbitMQ, which filters the events per Organization (tenant). In the CloudForms there is a tab for setting RabbitMQ credentials in provider's configuration form. More details on enabling RabbitMQ is descibed in link:vcd-rabbitmq.adoc[Event Monitoring with RabbitMQ].
 
 

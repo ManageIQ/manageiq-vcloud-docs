@@ -3,7 +3,7 @@
 . link:README.adoc[Introduction]
 . link:vcd_installation_guide/README.adoc[vCloud Director provider for CloudForms Installation Guide]
 .. link:vcd_installation_guide/topics/overview.adoc[Overview]
-.. link:vcd_installation_guide/topics/vcd-relese-notes.adoc[Release notes]
+.. link:vcd_installation_guide/topics/vcd-release-notes.adoc[Release notes]
 .. link:vcd_installation_guide/topics/prerequisite.adoc[Prerequisite]
 .. link:vcd_installation_guide/topics/vcd-rabbitmq.adoc[Event Monitoring with RabbitMQ]
 .. link:vcd_installation_guide/topics/vcd-ampq.adoc[Enable AMPQ Events in vCloudDirector]
