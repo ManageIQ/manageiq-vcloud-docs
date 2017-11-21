@@ -4,8 +4,8 @@ To include vCloudDirector provider into the Red Hat CloudForms, the following pi
 
 . Red Hat CloudForms
 . vCloudDirector
-.. Valid Organisation (Tenant) in vCloudDirector
-.. Valid account in vCloudDirector Organisation.
+.. Valid Organization (Tenant) in vCloudDirector
+.. Valid account in vCloudDirector Organization.
 
 == Installing Red Hat CloudForms Server 4.x
 To install Red Hat CloudForms Server, please refer to
