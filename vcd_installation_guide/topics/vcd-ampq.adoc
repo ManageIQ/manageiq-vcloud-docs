@@ -1,9 +1,9 @@
 = Enable AMPQ Events in vCloudDirector
 
 To enable events from vCloudDirector, the following configuration in vCloudDirector is required. Prerequisite for this step is installed and configured RabbitMQ. For details, please refer to
-link:../test/rabbitMQ_configure.adoc[RabbitMQ for vCloudDirector Configuration guide]
+link:../test/vcd_rabbitmq.adoc[Event Monitoring with RabbitMQ guide]
 
-To enable AMPQ in the vCloudDirector a login in as system administrator is required. Note that it is not enough to have (only) administrator role inside the Organisation. After this navigate to AMPQ settings following "System -> Administration -> Management -> System settings".
+To enable AMPQ in the vCloudDirector a login in as system administrator is required. Note that it is not enough to have (only) administrator role inside the Organisation. After this navigate to AMPQ settings following "System -> Administration -> Management -> System settings -> Extensibility".
 
 image:../../images/docs_vcd_rabbitmq_conf.jpg[alt="Navigate to AMPQ settings in vCloudDirector"]
 

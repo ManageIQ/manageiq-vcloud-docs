@@ -1,0 +1,45 @@
+= vCloudDirector Plugin release notes
+
+.Red Hat CloudForms have a plugin for vCloudDirector provider with limited functionality. The vCloudDirector coverage is limited to folowing functionality:
+*  Authorisation
+*  Inventory
+*  Power Operations
+*  Provisioning
+*  Events
+
+Due to the limited support of vCloudDirector provider some functionalities are not straight forward. The most exceptional is provision of VM. This is not possible even through the vCloudDirector without building the vApp. More details on this matter is in Provisioning section.
+
+== Authorisation
+The authorisation is a basic functionality that creates a link from CloudForms to vCloudDirector and enables collecting data from vCloudDirector. The Authorisation is possible through vCloud director organisation (tenant) accounts. More details on adding new provider is described in link:vcd-release-notes.adoc[Add new vCloudDirector provider"].
+
+
+== Inventory
+The inventory collects instances and catalog items. The results from this step are available in corresponding views:
+
+.Mapping (CloudForms view/vCloudDirector notation):
+* Images / catalog items, images
+* Instances / VMs, runing virtual machines
+* Orchestration stacks / vApps
+
+== Power Operations
+Power operations cover the control functionality over the VMs and vApps, similarly that you expect from other providers.
+
+.vApps operations are:
+ * Set retirement date
+ * Retire vApp
+
+.Instance opreations are
+* Start
+* Stop
+* Suspend
+
+== Provisioning
+The major differenc of vCloudDirector provider from others is that it provisions all resources wrapped in vApps. The images, VMs and vApp templates can be stored in Organizational Catalog, but only vApps can be provisioned directly. To provision other resources, a corresponding vApp needs to be build first.
+
+The vCloudDirector provider for CloudForms has limited functionality and does not support building vApps from CloudForms directly, therefore the vApp templates need's to be created in advance with vCloudDirector. The provision process of existing vApp is descibed in link:vcd-vapp-provision.adoc["vApp Provision in vCloudDirector through Red Hat CloudForms"].
+
+
+== Events
+The events from vCloudDirector are published on RabbitMQ, which filters the events per Organization (tenant). In the CloudForms there is a tab for setting RabbitMQ credentials in provider's configuration form. More details on enabling RabbitMQ is descibed in link:vcd_installation_guide/topics/vcd-rabbitmq.adoc[Event Monitoring with RabbitMQ].
+
+

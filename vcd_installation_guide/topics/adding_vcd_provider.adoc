@@ -14,7 +14,7 @@ image:../../images/docs_vcd_addPriovider01_nav.jpg[alt="Add a New Cloud Provider
 
 Choose "Add a new Cloud Provider"
 
-image:../../images/docs_vcd_addPriovider02_addNewMenu.jpg[alt="Add a New Cloud Provider"]
+image:../../images/docs_vcd_addPriovider02_addNewMenu.jpg[alt="Choose menue option"]
 
 Select "VMware vCloud"
 image:../../images/docs_vcd_addPriovider03_vcd.jpg[alt="Add a New Cloud Provider"]
