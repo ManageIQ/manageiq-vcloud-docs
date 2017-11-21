@@ -1,6 +1,6 @@
 = vCloudDirector Plugin release notes
 
-.Red Hat CloudForms have a plug-in for vCloudDirector provider with limited functionality. The vCloudDirector coverage is limited to folowing functionality:
+.Red Hat CloudForms have a plug-in for vCloudDirector provider with limited functionality. The vCloudDirector coverage is limited to the following functionality:
 *  Authorization
 *  Inventory
 *  Power Operations
