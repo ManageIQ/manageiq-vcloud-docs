@@ -7,10 +7,10 @@
 *  Provisioning
 *  Events
 
-Due to the limited support of vCloudDirector provider some functionalities are not straight forward. The most exceptional is provision of VM. This is not possible even through the vCloudDirector without building the vApp. More details on this matter is in Provisioning section.
+Due to the limited support of vCloudDirector provider, some functionalities are not straightforward. The most exceptional is provision of a VM. This is not possible even through the vCloudDirector without building the vApp. More details on this matter are in Provisioning section.
 
 == Authorization
-The authorization is a basic functionality that creates a link from CloudForms to vCloudDirector and enables collecting data from vCloudDirector. The Authorization is possible through vCloud director organization (tenant) accounts. More details on adding new provider is described in link:adding-vcd-provider.adoc[Add new vCloudDirector provider].
+The authorization is a basic functionality that creates a link from CloudForms to vCloudDirector and enables collecting data from vCloudDirector. The Authorization is possible through vCloud director organization (tenant) accounts. More details on adding new provider are described in link:adding-vcd-provider.adoc[Add new vCloudDirector provider].
 
 
 == Inventory
@@ -34,12 +34,10 @@ Power operations cover the control functionality over the VMs and vApps, similar
 * Suspend
 
 == Provisioning
-The major difference of vCloudDirector provider from others is that it provisions all resources wrapped in vApps. The images, VMs and vApp templates can be stored in Organizational Catalog, but only vApps can be provisioned directly. To provision other resources, a corresponding vApp needs to be build first.
+The major difference of vCloudDirector provider from others is that it provisions all resources wrapped in vApps. The images, VMs and vApp templates can be stored in Organizational Catalog, but only vApps can be provisioned directly. To provision other resources, a corresponding vApp needs to be built first.
 
 The vCloudDirector provider for CloudForms has limited functionality and does not support building vApps from CloudForms directly, therefore the vApp templates needs to be created in advance with vCloudDirector. The provision process of existing vApp is described in link:vcd-vapp-provision.adoc[vApp Provision in vCloudDirector through Red Hat CloudForms].
 
 
 == Events
 The events from vCloudDirector are published on RabbitMQ, which filters the events per Organization (tenant). In the CloudForms there is a tab for setting RabbitMQ credentials in provider's configuration form. More details on enabling RabbitMQ is described in link:vcd-rabbitmq.adoc[Event Monitoring with RabbitMQ].
-
-

@@ -1,9 +1,9 @@
 = Event Monitoring with RabbitMQ
 
-Note: this step is optional. It is appropriate in environments where vCloudDirector events will be pushed through RabbitMQ.
+NOTE: this step is optional. It is appropriate in environments where vCloudDirector events will be pushed through RabbitMQ.
 
 == An Overview
-The VMware vCloudDirector (vCD) can distibute events and notifications to other AMPQ server allowing the distribution of messages to other clients, in our case RedHat CloudForms or ManageIQ. Please find below the shema of this setting. Please note that the steps in this manual must be repeated for each vCD organization that you want to support Notifications for.
+The VMware vCloudDirector (vCD) can distribute events and notifications to other AMPQ server allowing the distribution of messages to other clients, in our case RedHat CloudForms or ManageIQ. Please find below the schema of this setting. Please note that the steps in this manual must be repeated for each vCD organization that you want to support Notifications for.
 
 .Image Title
 image::../../images/docs_vcd_rabbitmq01_overview.jpg[title="Schematic representation of the desired ManageIQ/CloudForms configuration."]
@@ -11,7 +11,7 @@ image::../../images/docs_vcd_rabbitmq01_overview.jpg[title="Schematic representa
 
 == Prerequisites
 We assume that vCD is already deployed with corresponding RabbitMQ installation and that you
-have superuser access for both of them. Furthermore we assume that vCD already sends messages
+have superuser access to both of them. Furthermore, we assume that vCD already sends messages
 with notifications to the RabbitMQ – hence exchange named systemExchange already exists inside
 RabbitMQ.
 
@@ -24,7 +24,7 @@ Notification messages that are dropped at RabbitMQ are routed by vCD organizatio
 (ORG_UUID). In this section we provide instruction how to get UUID for a specific organization using
 vCD Web Interface.
 
- * Login as superuser of vDirector (not in the organisation, in the provider access)
+ * Log in as superuser of vCloudDirector (not in the organisation, in the provider access)
  * Click on "Manage organizations"
 
 .Image Title
@@ -49,12 +49,12 @@ Name it “queue-<ORG_UUID>” and leave all other parameters on default.
 .Image Title
 image::../../images/docs_vcd_rabbitmq05_setQueue.jpg[title="Adding a new queue in RabbitMQ Web GUI. Queue name is important since user permissions are given based on queue names."]
 
-IMPORTANT: Please set parameters exactly as shown on the screenshot above, otherwise ManageIQ
+IMPORTANT: Please set parameters exactly as shown in the screenshot above, otherwise ManageIQ
 will not be able to consume messages (e.g. if you set auto delete to true instead of false).
 
 === Subscribe
 Navigate to Exchanges tab and open up systemExchange details. In the Bindings subsection add
-binding for your queue with following routing key: “#.<ORG_UUID>.#”.
+binding for your queue with following routing key: `##.<ORG_UUID>.#`.
 
 .Image Title
 image::../../images/docs_vcd_rabbitmq06_bindQueue.jpg[title="Binding exchange to the queue."]
@@ -67,12 +67,14 @@ add user.
 Navigate to Admin tab and add a new user without any tags. Omitting all tags restricts user to
 connect only to the specific queue. Please note that she will not be able to access the RabbitMQ Web
 UI as well.
+
 .Image Title
 image::../../images/docs_vcd_rabbitmq07_orgUser.jpg[title="Adding a new RabbitMQ user without any tags."]
 
 === Configure
 Open up user details and set Configure, Write and Read permission in Permissions subsection. For all
 three of them simply use queue name and set the permission.
+
 image::../../images/docs_vcd_rabbitmq08_permissions.jpg[title="Tuning permissions for RabbitMQ user. Configure and Write permissions are required only due to a bug in MiQ library that connects to the queue."]
 
 

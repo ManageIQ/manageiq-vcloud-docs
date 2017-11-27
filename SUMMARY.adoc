@@ -9,5 +9,3 @@
 .. link:vcd_installation_guide/topics/vcd-ampq.adoc[Enable AMPQ Events in vCloudDirector]
 .. link:vcd_installation_guide/topics/adding-vcd-provider.adoc[Adding a VMware vCloudDirector in Red Hat CloudForms]
 .. link:vcd_installation_guide/topics/vcd-vapp-provision.adoc[vApp Provision in vCloudDirector through Red Hat CloudForms]
-
-

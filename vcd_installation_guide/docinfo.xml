@@ -1,0 +1,15 @@
+<title>⁠vCloud Director provider for CloudForms Installation Guide</title>
+<productname>vCloud Director provider for CloudForms Installation Guide</productname>
+<productnumber>x.y</productnumber>
+<subtitle>vCloud Director provider for CloudForms Installation Guide</subtitle>
+<abstract>
+    <para>This documentation includes the installation steps for VMware vCloudDirector provider into Red Hat CloudForms.</para>
+    <para>The functionality covered by CloudForms plug-in for vCloudDirector provider is described in <link xlink:href="./topics/vcd-release-notes.adoc">Relese Notes</link>.</para>
+</abstract>
+<authorgroup id="Author_Group">
+        <author>
+                <firstname>XLAB</firstname>
+                <surname>XLAB</surname>
+                <email>???@xlab.si</email>
+        </author>
+</authorgroup>
