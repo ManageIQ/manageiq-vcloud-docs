@@ -44,7 +44,7 @@ image::../../images/docs_vcd_rabbitmq04_orgID.jpg[title="ORG_UUID can be seen on
 
 === Create
 Navigate to Queues tab and add a new queue there, to the same Virtual host as systemExchange.
-Name it “queue-<ORG_UUID>” and leave all other parameters on default.
+Name it `queue-<ORG_UUID>` and leave all other parameters on default.
 
 .Image Title
 image::../../images/docs_vcd_rabbitmq05_setQueue.jpg[title="Adding a new queue in RabbitMQ Web GUI. Queue name is important since user permissions are given based on queue names."]
