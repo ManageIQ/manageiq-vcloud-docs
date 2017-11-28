@@ -24,6 +24,6 @@ Fill-in the details with API Version, the IP address (or hostname) and port of t
 image:../../images/docs_vcd_addPriovider04_cred.jpg[alt="Add a New Cloud Provider"]
 
 Navigate to APMQ tab to fill in RabbitMQ credentials
-image:../../images/docs_vcd_addPriovider05_ampq.jpg[alt="Add a New Cloud Provider"]
+image:../../images/docs_vcd_addPriovider05_amqp.jpg[alt="Add a New Cloud Provider"]
 
 Validate the data and save the provider. Once this is done, press the add button and view the summary for the vCloud provider.
