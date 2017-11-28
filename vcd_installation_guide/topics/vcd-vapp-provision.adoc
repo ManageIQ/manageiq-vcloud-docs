@@ -20,7 +20,7 @@ In the CloudForms navigate to "Services>Catalogs>Orchestration templates". In "A
 
 === Create a Catalog item
 
-Note: This step assumes that there is at least one catalog already create.
+NOTE: This step assumes that there is at least one catalog already create.
 
 In the CloudForms navigate to "Services>Catalogs>Catalog Items". From Configuration menu, choose "Add New Catalog Item". In "Catalog Item" menu choose "Orchestration".
 

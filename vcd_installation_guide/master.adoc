@@ -17,11 +17,11 @@ include::topics/vcd-release-notes.adoc[]
 [[Prerequisite]]
 include::topics/prerequisite.adoc[]
 
-[[EventMonitoringRabbitMQ]]
-include::topics/vcd-rabbitmq.adoc[]
-
 [[EnableAMQPEventsInVCloudDirector]]
 include::topics/vcd-amqp.adoc[]
+
+[[EventMonitoringRabbitMQ]]
+include::topics/vcd-rabbitmq.adoc[]
 
 [[AddingAVMwareVCD]]
 include::topics/adding-vcd-provider.adoc[]
