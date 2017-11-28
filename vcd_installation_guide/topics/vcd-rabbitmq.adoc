@@ -3,7 +3,7 @@
 NOTE: this step is optional. It is appropriate in environments where vCloudDirector events will be pushed through RabbitMQ.
 
 == An Overview
-The VMware vCloudDirector (vCD) can distribute events and notifications to other AMPQ server allowing the distribution of messages to other clients, in our case RedHat CloudForms or ManageIQ. Please find below the schema of this setting. Please note that the steps in this manual must be repeated for each vCD organization that you want to support Notifications for.
+The VMware vCloudDirector (vCD) can distribute events and notifications to other AMQP server allowing the distribution of messages to other clients, in our case RedHat CloudForms or ManageIQ. Please find below the schema of this setting. Please note that the steps in this manual must be repeated for each vCD organization that you want to support Notifications for.
 
 .Image Title
 image::../../images/docs_vcd_rabbitmq01_overview.jpg[title="Schematic representation of the desired ManageIQ/CloudForms configuration."]
@@ -53,7 +53,7 @@ IMPORTANT: Please set parameters exactly as shown in the screenshot above, other
 will not be able to consume messages (e.g. if you set auto delete to true instead of false).
 
 === Subscribe
-Navigate to Exchanges tab and open up systemExchange details. In the Bindings subsection add
+Navigate to Exchanges tab and open up vCloud Directors systemExchange details (prefixed with `vcd` as set in AMQP broker configuration). In the Bindings subsection add
 binding for your queue with following routing key: `##.<ORG_UUID>#`.
 
 .Image Title
