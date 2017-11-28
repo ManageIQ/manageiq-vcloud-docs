@@ -54,7 +54,7 @@ will not be able to consume messages (e.g. if you set auto delete to true instea
 
 === Subscribe
 Navigate to Exchanges tab and open up systemExchange details. In the Bindings subsection add
-binding for your queue with following routing key: `##.<ORG_UUID>.#`.
+binding for your queue with following routing key: `##.<ORG_UUID>#`.
 
 .Image Title
 image::../../images/docs_vcd_rabbitmq06_bindQueue.jpg[title="Binding exchange to the queue."]
