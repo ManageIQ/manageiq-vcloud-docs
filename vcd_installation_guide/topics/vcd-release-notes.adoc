@@ -36,7 +36,7 @@ Power operations cover the control functionality over the VMs and vApps, similar
 == Provisioning
 The major difference of vCloudDirector provider from others is that it provisions all resources wrapped in vApps. The images, VMs and vApp templates can be stored in Organizational Catalog, but only vApps can be provisioned directly. To provision other resources, a corresponding vApp needs to be built first.
 
-The vCloudDirector provider for CloudForms has limited functionality and does not support building vApps from CloudForms directly, therefore the vApp templates needs to be created in advance with vCloudDirector. The provision process of existing vApp is described in link:vcd-vapp-provision.adoc[vApp Provision in vCloudDirector through Red Hat CloudForms].
+The vCloudDirector provider for CloudForms has limited functionality and does not support building or changing vApps from CloudForms directly, therefore the vApp templates needs to be created in advance with vCloudDirector. The provision process of existing vApp is described in link:vcd-vapp-provision.adoc[vApp Provision in vCloudDirector through Red Hat CloudForms].
 
 
 == Events
