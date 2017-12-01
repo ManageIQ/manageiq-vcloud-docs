@@ -2,6 +2,8 @@
 
 The VMware vCloudDirector uses vApps as a basic entity on which power operations are performed. The vApp can include one or more virtual machines and in CloudForms a vApp is represented as a type of orchestration stack. User can find more information about vApps on link:https://pubs.vmware.com/vca/index.jsp?topic=%2Fcom.vmware.vca.od.ug.doc%2FGUID-3F4BF45F-89CE-4478-B6D5-5BD7EE749C08.html[VMware pages].
 
+Note: Currently CloudForms cannot change any attributes of a vApp or any virtual machines inside vApp. All vApp modification should be realized throug VMware vCloud Director.
+
 == Prerequisites
 .The vApp provision process requires:
 * Properly configured vCloudDirector:
