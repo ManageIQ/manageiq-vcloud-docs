@@ -3,6 +3,8 @@
 Now that CloudForms, VMware vCloudDirector and RabbitMQ (optional) has been correctly installed, it
 is time to add the vCloudDirector as a CloudForms Cloud Provider.
 
+Tested setup is vCloudDirector version 9.0.0.7033385 (aka. 9.0.1) and Cloud Forms version 5.8.2.3.
+
 To do so, go to `http://my_cfme_host/` and login with a user who is allowed to
 add providers. The default user is `admin` with `smartvm` for his password.
 
