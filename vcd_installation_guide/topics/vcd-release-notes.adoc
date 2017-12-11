@@ -19,19 +19,24 @@ The inventory collects instances and catalog items. The results from this step a
 .Mapping (CloudForms view/vCloudDirector notation):
 * Images / catalog items, images
 * Instances / VMs, running virtual machines
-* Orchestration stacks / vApps
+* Orchestration stacks / vApps, templates
+* Networks / Organization VDC Networks
+* Subnets / VDC Network pool
 
 == Power Operations
 Power operations cover the control functionality over the VMs and vApps, similarly that you expect from other providers.
 
-.vApps operations are:
+.Service operations are:
  * Set retirement date
- * Retire vApp
+ * Retire Service
+
+Please note when retiring services all VMs in the service will be stopped and deleted from disk.
 
 .Instance operations are:
 * Start
 * Stop
 * Suspend
+* Delete
 
 == Provisioning
 The major difference of vCloudDirector provider from others is that it provisions all resources wrapped in vApps. The images, VMs and vApp templates can be stored in Organizational Catalog, but only vApps can be provisioned directly. To provision other resources, a corresponding vApp needs to be built first.
