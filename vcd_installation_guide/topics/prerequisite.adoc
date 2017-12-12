@@ -9,9 +9,9 @@ To include vCloudDirector provider into the Red Hat CloudForms, the following pi
 ** Valid account in vCloudDirector Organization.
 
 == Tested versions
-Tested setup is vCloudDirector version 9.0.0.7033385 (also known as 9.0.1) and Cloud Forms version 5.8.2.3.
+Tested setup is vCloudDirector version 9.0.0.7033385 (also known as 9.0.1) and Cloud Forms version 4.5 (CFME 5.8.2.3).
 
-== Installing Red Hat CloudForms Server 5.8
+== Installing Red Hat CloudForms Server 4.5
 To install Red Hat CloudForms Server, please refer to
 link:https://access.redhat.com/documentation/en/red-hat-cloudforms/[Cloud Forms installation guide]
 
