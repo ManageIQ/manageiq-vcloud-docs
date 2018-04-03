@@ -1,15 +1,15 @@
-= Event Monitoring with RabbitMQ
+== Event Monitoring with RabbitMQ
 
 NOTE: this step is optional. It is appropriate in environments where vCloudDirector events will be pushed through RabbitMQ.
 
-== An Overview
+=== An Overview
 The VMware vCloudDirector (vCD) can distribute events and notifications to other AMQP server allowing the distribution of messages to other clients, in our case RedHat CloudForms or ManageIQ. Please find below the schema of this setting. Please note that the steps in this manual must be repeated for each vCD organization that you want to support Notifications for.
 
 .Image Title
 image::../../images/docs_vcd_rabbitmq01_overview.jpg[title="Schematic representation of the desired ManageIQ/CloudForms configuration."]
 
 
-== Prerequisites
+=== Prerequisites
 We assume that vCD is already deployed with corresponding RabbitMQ installation and that you
 have superuser access to both of them. Furthermore, we assume that vCD already sends messages
 with notifications to the RabbitMQ – hence exchange named systemExchange already exists inside
@@ -18,7 +18,7 @@ RabbitMQ.
 We also assume that RabbitMQ has Web GUI installed, although all the configuration below can be
 done via RabbitMQ CLI.
 
-== Obtain UUID of the organization
+=== Obtain UUID of the organization
 
 Notification messages that are dropped at RabbitMQ are routed by vCD organization UUID
 (ORG_UUID). In this section we provide instruction how to get UUID for a specific organization using
@@ -40,9 +40,9 @@ image::../../images/docs_vcd_rabbitmq03_chooseOrg.jpg[title="Select an organizat
 .Image Title
 image::../../images/docs_vcd_rabbitmq04_orgID.jpg[title="ORG_UUID can be seen on the organization details view, since it's part of the URL."]
 
-== Prepare queue for organisation
+=== Prepare queue for organisation
 
-=== Create
+==== Create
 Navigate to Queues tab and add a new queue there, to the same Virtual host as systemExchange.
 Name it `queue-<ORG_UUID>` and leave all other parameters on default.
 
@@ -52,7 +52,7 @@ image::../../images/docs_vcd_rabbitmq05_setQueue.jpg[title="Adding a new queue i
 IMPORTANT: Please set parameters exactly as shown in the screenshot above, otherwise ManageIQ
 will not be able to consume messages (e.g. if you set auto delete to true instead of false).
 
-=== Subscribe
+==== Subscribe
 Navigate to Exchanges tab and open up vCloud Directors systemExchange details (prefixed with `vcd` as set in AMQP broker configuration). In the Bindings subsection add
 binding for your queue with following routing key: `##.<ORG_UUID>#`.
 
@@ -62,8 +62,8 @@ image::../../images/docs_vcd_rabbitmq06_bindQueue.jpg[title="Binding exchange to
 Your queue will now receive all messages regarding specified organization. As a last step we need to
 add user.
 
-== Prepare user for organisation
-=== Create
+=== Prepare user for organisation
+==== Create
 Navigate to Admin tab and add a new user without any tags. Omitting all tags restricts user to
 connect only to the specific queue. Please note that she will not be able to access the RabbitMQ Web
 UI as well.
@@ -71,7 +71,7 @@ UI as well.
 .Image Title
 image::../../images/docs_vcd_rabbitmq07_orgUser.jpg[title="Adding a new RabbitMQ user without any tags."]
 
-=== Configure
+==== Configure
 Open up user details and set Configure, Write and Read permission in Permissions subsection. For all
 three of them simply use queue name and set the permission.
 
@@ -81,7 +81,7 @@ image::../../images/docs_vcd_rabbitmq08_permissions.jpg[title="Tuning permission
 IMPORTANT: Make sure that you click “Set permission” button after you’ve input queue names or
 else user will not be able to consume any messages.
 
-== Summary
+=== Summary
 Following instructions above the RabbitMQ is configured so that it is safe to provide vCD organization
 administrator with RabbitMQ endpoint URL and credentials of the created user. She will only be able
 to connect to the queue that is prepared for her and therefore only consume messages related to

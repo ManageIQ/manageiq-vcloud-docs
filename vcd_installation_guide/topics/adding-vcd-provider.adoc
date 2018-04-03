@@ -1,4 +1,4 @@
-= Adding a VMware vCloudDirector in Red Hat CloudForms
+== Adding a VMware vCloudDirector in Red Hat CloudForms
 
 Now that CloudForms, VMware vCloudDirector and RabbitMQ (optional) has been correctly installed, it
 is time to add the vCloudDirector as a CloudForms Cloud Provider.

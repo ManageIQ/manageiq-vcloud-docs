@@ -1,4 +1,4 @@
-= Prerequisite
+== Prerequisite
 
 To include vCloudDirector provider into the Red Hat CloudForms, the following pieces are required to be installed:
 
