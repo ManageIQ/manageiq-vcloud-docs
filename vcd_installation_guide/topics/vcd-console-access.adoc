@@ -1,0 +1,75 @@
+== Remote Console Access in vCloudDirector through Red Hat CloudForms
+
+*Remote console* is a graphical window that allows you to view desktop of a virtual machine, and to interact
+with that virtual machine in a similar way to a physical machine.
+
+VMware vCloud cloud provider supports establishing remote console against running virtual machines. Console window
+is opened in browser using https://www.vmware.com/support/developer/html-console[VMware HTML5 WebMKS Console SDK].
+Due to VMware licensing restrictions, Red Hat cannot ship the WebMKS SDK in CloudForms
+
+NOTE: vCloudDirector itself needn't be accessible from browser directly since CloudForms serves as proxy
+between the two. Remote console feature should work as long as browser can access CloudForms.
+
+=== Prerequisites
+Following prerequisites need to be met in order to be able to use remote console access:
+
+* VMware WebMKS SDK installed on CloudForms appliance
+* `VMware WebMKS` option selected as default VMware Console Support
+* virtual machine that we're establishing remote console against must be powered on
+
+==== Install VMware WebMKS SDK on CloudForms appliance
+Remote console for VMware vCloud cloud provider requires VMware WebMKS SDK to be installed on CloudForms appliance.
+Following steps are needed to install it:
+
+1. SSH to the CloudForms appliance console as root user.
+2. Create a new directory `webmks` in the `/var/www/miq/vmdb/public/` directory:
++
+----
+/var/www/miq/vmdb/public/webmks
+----
++
+3. Download and extract the contents of link:https://www.vmware.com/support/developer/html-console/[VMware WebMKS SDK]
+   into the `webmks` directory.
+
+Directory structure similar to the one shown below should now reside in the newly created webmks directory:
+```
+webmks/
+├── css
+│   ├── extended-keypad.css
+│   ├── main-ui.css
+│   ├── trackpad.css
+│   └── wmks-all.css
+├── img
+│   ├── touch_sprite_feedback.png
+│   └── touch_sprite.png
+└── wmks.min.js
+```
+
+==== Configure VMware WebMKS as default console type for VMware vCloud cloud provider
+1. Log in to the CloudForms user interface as an administrative user.
+2. From the settings menu, select *Configuration*.
+3. Click on the _Settings -> Zones_ accordion and pick server from your zone.
+4. In _Server_ tab scrool down to _VMware Console Support_ section and pick *VMware WebMKS* option for "Use" field.
+5. Click "Save".
+
+image::../../images/console-access/console-access-setting.png[title="Default console type for VMware vCloud cloud provider"]
+
+NOTE: *VMware Console Support* setting will affect both VMware vCloud cloud provider as well as VMware vSphere
+infrastructure provider. It is currently not possible to use different setting for the two.
+
+=== Using remote console access
+Log in to the CloudForms user interface and open details page of a running VMware vCloud cloud provider's virtual
+machine. Menu option _Access -> VM Console_ appears in center menu.
+
+image::../../images/console-access/console-access-pick.png[title="Console access menu button"]
+
+Click it and remote console will open in a popup window. Focus console by left-clicking into the remote desktop section
+to start using virtual machine remotely (mouse moving, mouse clicking and keyboard typing). Close popup when you're
+done.
+
+image::../../images/console-access/console-access-demo.png[title="Console popup opens"]
+
+NOTE: If nothing happens when you click on "VM Console" button, please make sure popus are not being blocked by
+your browser. See image below.
+
+image::../../images/console-access/console-access-allow-popup.png[title="Allow CloudForms to open console in a popup"]

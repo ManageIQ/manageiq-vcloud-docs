@@ -28,3 +28,6 @@ include::topics/adding-vcd-provider.adoc[]
 
 [[VAppProvisioninVCD]]
 include::topics/vcd-vapp-provision.adoc[]
+
+[[ConsoleAccessVCD]]
+include::topics/vcd-console-access.adoc[]
