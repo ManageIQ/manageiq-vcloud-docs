@@ -1,4 +1,4 @@
-= Enable AMQP Events in vCloudDirector
+== Enable AMQP Events in vCloudDirector
 
 To enable events from vCloudDirector, the following configuration in vCloudDirector is required. Prerequisite for this step is installed and configured RabbitMQ. For details, please refer to
 link:../topics/vcd-rabbitmq.adoc[Event Monitoring with RabbitMQ guide]
