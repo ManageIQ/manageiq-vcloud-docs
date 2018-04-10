@@ -1,48 +1,82 @@
 == vCloudDirector Plugin release notes
 
-.Red Hat CloudForms have a plug-in for vCloudDirector provider with limited functionality. The vCloudDirector coverage is limited to the following functionality:
+Red Hat CloudForms has a plug-in for vCloudDirector provider with limited functionality. The vCloudDirector coverage
+is limited to the following functionality:
+
 *  Authorization
 *  Inventory
 *  Power Operations
 *  Provisioning
 *  Events
 
-Due to the limited support of vCloudDirector provider, some functionalities are not straightforward. The most exceptional is provision of a VM. This is not possible even through the vCloudDirector without building the vApp. More details on this matter are in Provisioning section.
+Due to the limited support of vCloudDirector provider, some functionalities are not straightforward. The most
+exceptional is provisioning of a VM which is only possible by instantiating a predefined vApp template.
+More details on this matter are in link:vcd-vapp-provision.adoc[Provisioning section].
 
 === Authorization
-The authorization is a basic functionality that creates a link from CloudForms to vCloudDirector and enables collecting data from vCloudDirector. The Authorization is possible through vCloud director organization (tenant) accounts. More details on adding new provider are described in link:adding-vcd-provider.adoc[Add new vCloudDirector provider].
+Authorization is a basic functionality that creates a link from CloudForms to vCloudDirector and enables collecting
+data from vCloudDirector. Authorization is possible through vCloud director organization (tenant) accounts. More
+details on adding a new provider are described in link:adding-vcd-provider.adoc[Adding a new VMware vCloud Director
+cloud provider in CloudForms].
 
 
 === Inventory
-The inventory collects instances and catalog items. The results from this step are available in corresponding views:
+VMware vCloud Director cloud provider inventories vCloudDirector's entities, e.g. virtual machines, and persists them
+in CloudForms' database. There is a gap between how VMware vCloud Director names entities and how are they named in
+CloudForms. Below please find a mapping between the two.
 
-.Mapping (CloudForms view/vCloudDirector notation):
-* Images / catalog items, images
-* Instances / VMs, running virtual machines
-* Orchestration stacks / vApps, templates
-* Networks / Organization VDC Networks
-* Subnets / VDC Network pool
+[options="header",title="Cloud provider entity mapping"]
+|=====================================================================================
+| CloudForms convention  | VMware vCloud Director convention
+| instance               | virtual machine
+| image                  | virtual machine inside vApp template
+| orchestration stack    | vApp
+| orchestration template | vApp template
+| availability zone      | VDC (virtual data center)
+| (not mapped)           | organization
+|=====================================================================================
+
+Implicit network manager is also run for this cloud provider to inventory networking part. Below please find a
+mapping for it.
+
+[options="header",title="Network provider entity mapping"]
+|=====================================================================================
+| CloudForms convention                    | VMware vCloud Director convention
+| cloud network/subnet (type "OrgVdcNet")  | VDC network
+| cloud network/subnet (type "OrgVappNet") | vApp network
+| network port                             | NIC (network interface card)
+| floating ip                              | external ip
+|=====================================================================================
 
 === Power Operations
-Power operations cover the control functionality over the VMs and vApps, similarly that you expect from other providers.
+Power operations cover the control functionality over the VMs and vApps, similarly that you expect from other
+providers.
 
 .Service operations are:
  * Set retirement date
  * Retire Service
 
-Please note when retiring services all VMs in the service will be stopped and deleted from disk.
+NOTE: When retiring services all VMs in the service will be stopped and deleted from disk.
 
 .Instance operations are:
 * Start
 * Stop
 * Suspend
+* Snapshot
 * Delete
 
 === Provisioning
-The major difference of vCloudDirector provider from others is that it provisions all resources wrapped in vApps. The images, VMs and vApp templates can be stored in Organizational Catalog, but only vApps can be provisioned directly. To provision other resources, a corresponding vApp needs to be built first.
+The major difference of VMware vCloud Director from other platforms is that it provisions all resources wrapped in
+vApps. The images, VMs and vApp templates can be stored in Catalogs, but only vApps can be provisioned directly.
+To provision other resources, a corresponding vApp needs to be built first.
 
-The vCloudDirector provider for CloudForms has limited functionality and does not support building or changing vApps from CloudForms directly, therefore the vApp templates needs to be created in advance with vCloudDirector. The provision process of existing vApp is described in link:vcd-vapp-provision.adoc[vApp Provision in vCloudDirector through Red Hat CloudForms].
+The VMware vCloud Director cloud provider for CloudForms has limited functionality and does not support building or
+changing vApps from CloudForms directly, therefore the vApp templates needs to be created in advance within
+vCloud Director. The provisioning process of existing vApp template is described in
+link:vcd-vapp-provision.adoc[vApp Provisioning in vCloudDirector through Red Hat CloudForms] section.
 
 
 === Events
-The events from vCloudDirector are published on RabbitMQ, which filters the events per Organization (tenant). In the CloudForms there is a tab for setting RabbitMQ credentials in provider's configuration form. More details on enabling RabbitMQ is described in link:vcd-rabbitmq.adoc[Event Monitoring with RabbitMQ].
+The events from vCloudDirector are published on RabbitMQ queue, which filters the events per Organization (tenant).
+In the CloudForms there is a tab for setting RabbitMQ credentials in provider's configuration form. More details on
+enabling RabbitMQ is described in link:vcd-rabbitmq.adoc[Event Monitoring with RabbitMQ] section.
