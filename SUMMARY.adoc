@@ -1,11 +1,10 @@
 == Summary
 
 . link:README.adoc[Introduction]
-. link:vcd_installation_guide/README.adoc[vCloud Director provider for CloudForms Installation Guide]
+. link:vcd_installation_guide/README.adoc[VMware vCloud Director cloud provider for CloudForms Installation Guide]
 .. link:vcd_installation_guide/topics/overview.adoc[Overview]
 .. link:vcd_installation_guide/topics/vcd-release-notes.adoc[Release notes]
-.. link:vcd_installation_guide/topics/prerequisite.adoc[Prerequisite]
-.. link:vcd_installation_guide/topics/vcd-rabbitmq.adoc[Event Monitoring with RabbitMQ]
-.. link:vcd_installation_guide/topics/vcd-ampq.adoc[Enable AMPQ Events in vCloudDirector]
-.. link:vcd_installation_guide/topics/adding-vcd-provider.adoc[Adding a VMware vCloudDirector in Red Hat CloudForms]
-.. link:vcd_installation_guide/topics/vcd-vapp-provision.adoc[vApp Provision in vCloudDirector through Red Hat CloudForms]
+.. link:vcd_installation_guide/topics/prerequisite.adoc[Prerequisites]
+.. link:vcd_installation_guide/topics/vcd-rabbitmq.adoc[Event monitoring configuration]
+.. link:vcd_installation_guide/topics/adding-vcd-provider.adoc[Adding a new VMware vCloud Director cloud provider in CloudForms]
+.. link:vcd_installation_guide/topics/vcd-vapp-provision.adoc[vApp template provisioning through CloudForms]

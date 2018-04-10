@@ -1,12 +1,9 @@
-== Prerequisite
+== Prerequisites
 
-To include vCloudDirector provider into the Red Hat CloudForms, the following pieces are required to be installed:
+Following prerequisites need to be met before using VMware vCloud Director cloud provider plug-in of Red Hat CloudForms:
 
-* Red Hat CloudForms
-* vCloudDirector
-** Setup Provider Virtual Datacenter in vCloudDirector
-** Valid Organization (Tenant) in vCloudDirector
-** Valid account in vCloudDirector Organization.
+* valid organization (tenant) inside VMware vCloud Director
+* administrative account in VMware vCloud Director's organization
 
 == Tested versions
 Tested setup is vCloudDirector version 9.0.0.7033385 (also known as 9.0.1) and Cloud Forms version 4.5 (CFME 5.8.2.3).
@@ -15,6 +12,6 @@ Tested setup is vCloudDirector version 9.0.0.7033385 (also known as 9.0.1) and C
 To install Red Hat CloudForms Server, please refer to
 link:https://access.redhat.com/documentation/en/red-hat-cloudforms/[Cloud Forms installation guide]
 
-== Installing vCloudDirector
-To install VMware vCloudDirector, please refer to:
+== Installing VMware vCloud Director
+To install VMware vCloud Director, please refer to:
 link:https://docs.vmware.com/en/vCloud-Director/9.0/vcd_90_install.pdf[vCloudDirector Installation guide]

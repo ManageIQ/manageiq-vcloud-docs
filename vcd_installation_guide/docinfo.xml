@@ -1,10 +1,10 @@
-<title>⁠vCloud Director provider for CloudForms Installation Guide</title>
-<productname>vCloud Director provider for CloudForms Installation Guide</productname>
+<productname>VMware vCloud Director cloud provider for CloudForms</productname>
 <productnumber>x.y</productnumber>
-<subtitle>vCloud Director provider for CloudForms Installation Guide</subtitle>
+<title>⁠Installation Guide</title>
+<subtitle>Installation Guide</subtitle>
 <abstract>
-    <para>This documentation includes the installation steps for VMware vCloudDirector provider into Red Hat CloudForms.</para>
-    <para>The functionality covered by CloudForms plug-in for vCloudDirector provider is described in <link xlink:href="./topics/vcd-release-notes.adoc">Relese Notes</link>.</para>
+    <para>This documentation includes the installation steps for VMware vCloud Director cloud provider into Red Hat CloudForms.</para>
+    <para>Functionality covered by CloudForms plug-in for vCloudDirector is described in <link xlink:href="./topics/vcd-release-notes.adoc">Relese Notes</link>.</para>
 </abstract>
 <authorgroup id="Author_Group">
         <author>
