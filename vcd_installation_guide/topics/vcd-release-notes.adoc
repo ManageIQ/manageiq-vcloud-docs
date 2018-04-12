@@ -1,6 +1,6 @@
-== vCloudDirector Plugin release notes
+== {vcd-provider-full} Release Notes
 
-Red Hat CloudForms has a plug-in for vCloudDirector provider with limited functionality. The vCloudDirector coverage
+{cfme} supports {vcd} with limited functionality. The {vcd} coverage
 is limited to the following functionality:
 
 *  Authorization
@@ -9,74 +9,70 @@ is limited to the following functionality:
 *  Provisioning
 *  Events
 
-Due to the limited support of vCloudDirector provider, some functionalities are not straightforward. The most
-exceptional is provisioning of a VM which is only possible by instantiating a predefined vApp template.
-More details on this matter are in link:vcd-vapp-provision.adoc[Provisioning section].
+Due to the limited support of {vcd}, some functionalities are not straightforward. The most
+exceptional is provisioning of a virtual machine which is only possible by instantiating a predefined vApp
+template. More details on this matter can be found in <<VAppProvisioninVCD>> section.
 
 === Authorization
-Authorization is a basic functionality that creates a link from CloudForms to vCloudDirector and enables collecting
-data from vCloudDirector. Authorization is possible through vCloud director organization (tenant) accounts. More
-details on adding a new provider are described in link:adding-vcd-provider.adoc[Adding a new VMware vCloud Director
-cloud provider in CloudForms].
-
+Authorization is a basic functionality that creates a link from {cfme-appliance} to {vcd-host} and enables collecting
+data from {vcd-host}. Authorization is possible through {vcd}'s *organization* (tenant) accounts. More
+details on adding a new provider are described in <<AddingAVMwareVCD>> section.
 
 === Inventory
-VMware vCloud Director cloud provider inventories vCloudDirector's entities, e.g. virtual machines, and persists them
-in CloudForms' database. There is a gap between how VMware vCloud Director names entities and how are they named in
-CloudForms. Below please find a mapping between the two.
+{vcd-provider} inventories {vcd}'s entities, e.g. virtual machines, and persists them
+into {cfme}' database. There is a gap between how {vcd} names entities and how are they named in
+{cfme}. Below please find a mapping between the two.
 
-[options="header",title="Cloud provider entity mapping"]
+[options="header",alt="Cloud provider entity mapping"]
 |=====================================================================================
-| CloudForms convention  | VMware vCloud Director convention
-| instance               | virtual machine
-| image                  | virtual machine inside vApp template
-| orchestration stack    | vApp
-| orchestration template | vApp template
-| availability zone      | VDC (virtual data center)
-| (not mapped)           | organization
-|=====================================================================================
-
-Implicit network manager is also run for this cloud provider to inventory networking part. Below please find a
-mapping for it.
-
-[options="header",title="Network provider entity mapping"]
-|=====================================================================================
-| CloudForms convention                    | VMware vCloud Director convention
-| cloud network/subnet (type "OrgVdcNet")  | VDC network
-| cloud network/subnet (type "OrgVappNet") | vApp network
-| network port                             | NIC (network interface card)
-| floating ip                              | external ip
+| CloudForms Convention.                   | {vcd} Convention.
+| Instance                                 | Virtual Machine
+| Image                                    | Virtual Machine Inside vApp Template
+| Orchestration Stack                      | vApp
+| Orchestration Template                   | vApp Template
+| Availability Zone                        | Virtual Datacenter (VDC)
+| (not mapped)                             | Organization
+| *OrgVdcNet* Network & Subnet             | VDC Network
+| *OrgVappNet* Network & Subnet            | vApp Network
+| Network Port                             | Network Interface Card (NIC)
+| Floating IP                              | External IP
 |=====================================================================================
 
 === Power Operations
-Power operations cover the control functionality over the VMs and vApps, similarly that you expect from other
-providers.
+Power operations cover the control functionality over the virtual machines and vApps, similarly that you
+expect from other providers.
 
-.Service operations are:
- * Set retirement date
- * Retire Service
+.Service Operations
+Supported service operations are:
 
-NOTE: When retiring services all VMs in the service will be stopped and deleted from disk.
+ * Set retirement date of a service.
+ * Retire service immediately.
 
-.Instance operations are:
-* Start
-* Stop
-* Suspend
-* Snapshot
-* Delete
+NOTE: When retiring services all virtual machines in the service will be stopped and deleted.
+
+.Virtual Machine Operations
+Supported virtual machine operations are:
+
+* Start virtual machine.
+* Stop virtual machine.
+* Suspend virtual machine.
+* Create snapshot of a virtual machine.
+* Revert virtual machine from a snapshot.
+* Delete snapsthot.
+* Delete virtual machine.
 
 === Provisioning
-The major difference of VMware vCloud Director from other platforms is that it provisions all resources wrapped in
-vApps. The images, VMs and vApp templates can be stored in Catalogs, but only vApps can be provisioned directly.
+The major difference of {vcd} from other platforms is that it provisions all resources wrapped in
+vApps. The images, virtual machines and vApp templates can be stored in catalogs, but only vApps can be provisioned directly.
 To provision other resources, a corresponding vApp needs to be built first.
 
-The VMware vCloud Director cloud provider for CloudForms has limited functionality and does not support building or
-changing vApps from CloudForms directly, therefore the vApp templates needs to be created in advance within
-vCloud Director. The provisioning process of existing vApp template is described in
-link:vcd-vapp-provision.adoc[vApp Provisioning in vCloudDirector through Red Hat CloudForms] section.
+The {vcd-full} has limited functionality and does not support building or
+changing vApps from within {cfme} directly, therefore the vApp templates need to be created in advance within
+{vcd-host}. Provisioning process of existing vApp template is described in <<VAppProvisioninVCD>> section.
 
 
 === Events
-The events from vCloudDirector are published on RabbitMQ queue, which filters the events per Organization (tenant).
-In the CloudForms there is a tab for setting RabbitMQ credentials in provider's configuration form. More details on
-enabling RabbitMQ is described in link:vcd-rabbitmq.adoc[Event Monitoring with RabbitMQ] section.
+Events from {vcd} can be published to AMQP broker which filters them per organization (tenant).
+{cfme} supports an option to provide AMQP credentials for {vcd-provider} in order to consume messages from
+AMQP broker. More details on how to configure eventing support can be found in <<EventMonitoringRabbitMQVCD>>
+section.

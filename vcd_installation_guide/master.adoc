@@ -1,23 +1,40 @@
-= vCloud Director provider for CloudForms Installation Guide
-:imagesdir: images
-:vernum: 1.0
-:toc: left
-:toclevels: 3
+:imagesdir:    images
+:vernum:       1.0
+:toc:          left
+:toclevels:    3
 :compat-mode:
 :experimental:
 :login:
 :numbered:
 
-[[Overview]]
+//
+// Handy shortcuts
+//
+:cfme:                    Red Hat CloudForms
+:cfme-gui:                CloudForms graphical interface
+:cfme-appliance:          CloudForms appliance
+:cfme-appliance-title:    CloudForms Appliance
+:cfme-console:            {cfme-appliance} console
+:vcd:                     VMware vCloud Director
+:vcd-host:                {vcd} host
+:vcd-gui:                 {vcd-host}'s graphical interface
+:vcd-provider:            {vcd} provider
+:vcd-provider-title:      {vcd} Provider
+:vcd-provider-full:       {vcd-provider} for {cfme}
+:vcd-provider-full-title: {vcd-provider-title} for {cfme}
+
+= {vcd-provider-full} Installation Guide
+
+[[OverviewVCD]]
 include::topics/overview.adoc[]
 
-[[ReleaseNotes]]
+[[ReleaseNotesVCD]]
 include::topics/vcd-release-notes.adoc[]
 
-[[Prerequisite]]
+[[PrerequisitesVCD]]
 include::topics/prerequisite.adoc[]
 
-[[EventMonitoringRabbitMQ]]
+[[EventMonitoringRabbitMQVCD]]
 include::topics/vcd-rabbitmq.adoc[]
 
 [[AddingAVMwareVCD]]

@@ -1,138 +1,149 @@
-== Event monitoring configuration for VMware vCloud Director
+== AMQP Event Monitoring Configuration for {vcd}
 
-NOTE: Event monitoring is optional, VMware vCloud Director cloud provider can also be added with
+NOTE: Event monitoring is optional, {vcd-provider} can also be added with
 event monitoring disabled.
 
-*AMQP Event monitoring* refers to a setup where observed entity emits messages to an AMQP broker where
+*AMQP Event monitoring* refers to a setup where observed entity emits messages to an AMQP broker from where
 another entity can consume them. Event monitoring is an improvement over periodical polling for changes
 through observerd entity's API for performance reasons.
 
-VMware vCloud Director supports AMQP event monitoring but has it disabled by default. There are two configuration
-scopes to take care of to make event monitoring work for vCloud Director cloud provider in CloudForms:
+{vcd-host} supports AMQP event monitoring but has it disabled by default. There are two configuration
+scopes to take care of in order to make event monitoring work for {vcd-provider-full}:
 
-1. Enable AMQP event monitoring option in VMware vCloud Director
-2. Configure RabbitMQ for per-organization consumption
+1. Enable AMQP event monitoring option in VMware vCloud Director.
+2. Configure RabbitMQ for per-organization consumption.
 
 Following scheme demonstrates expected setup to support event monitoring for VMware vCloud Director cloud
 provider.
 
-image::../../images/docs_vcd_rabbitmq01_overview.jpg[title="AMQP event monitoring setup"]
+image::../../images/docs_vcd_rabbitmq01_overview.jpg[alt="AMQP event monitoring setup"]
 
 
 === Prerequisites
-We assume RabbitMQ message broker is deployed and accessible both from CloudForms appliance as well as from
-VMware vCloud Director's appliance. Administrative access to RabbitMQ and VMware vCloud Director is needed.
+We assume RabbitMQ message broker is deployed and accessible both from {cfme-appliance} as well as from
+{vcd-host}. Administrative access to RabbitMQ and {vcd} is required.
 
-=== Enable AMQP event monitoring option in VMware vCloud Director
+=== Enable AMQP Event Monitoring Option in {vcd}
 
-Following configuration is required in VMware vCloud Director to enable AMQP event monitoring.
+Following configuration is required on {vcd-host} to enable AMQP event monitoring.
 
-Login into VMware vCloud director's graphical interface as system administrator and navigate to
-_System -> Administration -> Management -> System settings -> Extensibility_.
+Login into {vcd-gui} as system administrator and navigate to
+*System -> Administration -> Management -> System settings -> Extensibility*.
 
 image:../../images/docs_vcd_rabbitmq_conf.jpg[alt="Navigate to AMQP settings in vCloudDirector"]
 
-Check "Enable Notifications" checkbox and fill in the required credentials for RabbitMQ in
-_AMQP Broker Settings_ section.
+Check *Enable Notifications* checkbox and fill in the required credentials for RabbitMQ in
+*AMQP Broker Settings* section. As soon as you save changes, {vcd-host} will start emitting events
+to the RabbitMQ broker exchange.
+
+NOTE: When configuring RabbitMQ in the next section we assume *Exchange* name is set to *systemExchange*.
+Please use your actual exchange name in case you pick a different one in this form.
 
 image:../../images/docs_vcd_rabbitmq_conf_info.jpg[alt="Enable AMQP and fill in credentials"]
 
-=== Configure RabbitMQ for per-organization consumption
-Having VMware vCloud Director successfully configured to be sending messages to the AMQP broker,
-administrator then needs to perform some additional configuration to restrict access to user's own
-organization only. Only then it's safe to dispatch RabbitMQ credentials to organization administrators
-who manage VMware vCloud Director cloud provider using CloudForms.
+=== Configure RabbitMQ for Per-Organization Consumption
+Having {vcd-host} successfully configured to be sending messages to the AMQP broker,
+administrator then needs to perform some additional configuration on the AMQP broker to restrict access to user's own
+organization only. Only then it's safe to dispatch AMQP credentials to organization administrators
+who manage {vcd-provider-full}.
 
 RabbitMQ configuration consists of following steps:
 
-* Obtain UUID of the organization
-* Prepare queue for organization
-* Prepare user for organization
+* Obtain UUID of the {vcd}'s organization.
+* Prepare *queue* for {vcd}'s organization.
+* Prepare *user* for {vcd}'s organization.
 
-==== Obtain UUID of the organization
+==== Obtain UUID of the Organization
 
-Notification messages that are emitted to RabbitMQ are routed based on vCloud Director's organization UUID
-(ORG_UUID). Use steps below to obtain the UUID:
+{vcd}'s messages that are emitted to RabbitMQ are routed based on {vcd}'s organization UUID
+(ORG_UUID). Please follow steps below to obtain it.
 
- * Login to vCloud Director with administrative access
- * Navigate to organizations view by clicking on "Manage organizations" task
+ * Login into {vcd-gui} as system administrator.
+ * Navigate to organization through *Manage organizations* shortcut.
 
-image::../../images/docs_vcd_rabbitmq02_manageVCD.jpg[title="Open organizations view"]
+image::../../images/docs_vcd_rabbitmq02_manageVCD.jpg[alt="Open organizations view"]
+image::../../images/docs_vcd_rabbitmq03_chooseOrg.jpg[alt="Select an organization from the list and click it to open up its details."]
 
-* Navigate to desired organization
+* Read UUID from the URL.
 
-image::../../images/docs_vcd_rabbitmq03_chooseOrg.jpg[title="Select an organization from the list and click it to open up its details."]
+image::../../images/docs_vcd_rabbitmq04_orgID.jpg[alt="ORG_UUID can be seen on the organization details view, since it's part of the URL."]
 
-* Read UUID from the URL
+==== Prepare RabbitMQ Queue for the Organization
 
-image::../../images/docs_vcd_rabbitmq04_orgID.jpg[title="ORG_UUID can be seen on the organization details view, since it's part of the URL."]
+{vcd-host} is sending messages (events, notifications) to AMQP exchange named *systemExchange*. Multiple
+queues can be subscribed to *systemExchange* exchange, each of them will receive replica of all messages.
 
-==== Prepare queue for organization
-
-VMware vCloud Director is sending messages (events, notifications) to AMQP exchange named "systemExchange". Multiple
-queues can be subscribed to "systemExchange" exchange, each of them will receive replica of all messages.
-
-Steps below describe how to create a new AMQP queue and subscribe it to "systemExchange" exchange in a way that
-only messages for specific organization are delievered to it. CloudForms then consume messages from the queue to perform event-based actions.
+Steps below describe how to create a new AMQP queue and subscribe it to *systemExchange* exchange in a way that
+only messages for specific organization are delievered to it. {cfme} then consumes messages from the queue to perform event-based actions.
 
 NOTE: Steps below demonstrate AMQP queue configuration via Web GUI, but all the configuration can also be
 done via CLI.
 
-===== Create queue with predefined name
-Follow steps below to create a queue with predefined name so that CloudForms will be able to connect and
+.Create Queue with Predefined Name
+Follow steps below to create a queue with predefined name so that {cfme} will be able to connect and
 consume messages.
 
-Navigate to _Queues_ tab and add a new queue there, to the same virtual host where "systemExchange" exchange resides.
+Login into RabbitMQ broker Web GUI with administrative user and navigate to *Queues* tab to add a new queue.
+Assign it to the same virtual host as where *systemExchange* exchange exists.
 Name it `queue-<ORG_UUID>` and leave all other parameters on default.
 
-image::../../images/docs_vcd_rabbitmq05_setQueue.jpg[title="Adding a queue with predefined name to RabbitMQ. Queue name is important since user permissions are given based on queue names."]
+image::../../images/docs_vcd_rabbitmq05_setQueue.jpg[alt="Adding a queue with predefined name to RabbitMQ. Queue name is important since user permissions are given based on queue names."]
 
-IMPORTANT: Please set parameters exactly as shown in the screenshot above, otherwise CloudForms
+IMPORTANT: Please set parameters exactly as shown in the screenshot above, otherwise {cfme}
 won't be able to consume messages. If you accidentally, for example, set auto delete to Yes instead No,
-Cloud forms won't be able to connect.
+{cfme} won't be able to connect.
 
-===== Subscribe queue to "systemExchange" exchange
-Follow steps below to subscribe newly created queue to "systemExchange" exchange so that queue will start receiving
+.Subscribe Queue to *systemExchange* Exchange
+Follow steps below to subscribe newly created queue to *systemExchange* exchange so that queue will start receiving
 messages from the exchange.
 
-Navigate to _Exchanges_ tab and open up "systemExchange" exchange details. In the _Bindings_ subsection add a new
-binding for your queue and assign it following routing key:
+Navigate to *Exchanges* tab and open up *systemExchange* exchange details. In the *Bindings* subsection add a new
+binding for your queue and assign it following routing key (replace `<ORG_UUID>` with organization UUID):
 
 ```
 #.<ORG_UUID>.#
 ```
 
-image::../../images/docs_vcd_rabbitmq06_bindQueue.jpg[title="Binding exchange to the queue."]
+image::../../images/docs_vcd_rabbitmq06_bindQueue.jpg[alt="Binding exchange to the queue."]
 
 Your queue will now receive all messages (events, notifications) regarding specified organization.
 
-=== Prepare user for organization
+==== Prepare RabbitMQ User for the Organization
 Having a working queue with predefined name configured, we only need to provide authentication for it yet so that
-CloudForms will be able to connect. For this reason we create a new RabbitMQ user and assign it just
-enough permissions to access the one queue it needs. Eventually we'll pass this user's credentials to CloudForms
-to grant access to retrieve events. Please follow steps below.
+{cfme} will be able to connect. For this reason we create a new RabbitMQ user and assign it just
+enough permissions to access the one queue it needs. Eventually we'll pass this credentials to {cfme}
+in order to grant access required for eventing.
 
-==== Create RabbitMQ user
-Navigate to _Admin_ tab and add a new user without any tags. Omitting all tags restricts user from connecting to
+.Create RabbitMQ User
+Navigate to *Admin* tab and add a new user without any tags. Omitting all tags restricts user from connecting to
 any queue.
 
 NOTE: User without any tags won't be able to even access RabbitMQ Web UI.
 
-image::../../images/docs_vcd_rabbitmq07_orgUser.jpg[title="Adding a new RabbitMQ user without any tags."]
+image::../../images/docs_vcd_rabbitmq07_orgUser.jpg[alt="Adding a new RabbitMQ user without any tags."]
 
-==== Allow user to access one specific queue
-Open up user details and set "Configure regexp", "Write regexp" and "Read regexp" permission to point to specific
-queue in _Permissions_ subsection. For all three of them simply use queue name and set the permission.
+NOTE: Credentials used at this step will need to be entered to the {cfme} because {cfme} will be
+connecting to the one queue accessible to this user. Please see <<AddingAVMwareVCD>> section for
+exact instructions on where to provide them.
 
-image::../../images/docs_vcd_rabbitmq08_permissions.jpg[title="Tuning permissions for RabbitMQ user."]
+.Allow User to Access One Specific Queue
+Open up user details and in *Permissions* subsection set *Configure regexp*, *Write regexp* and *Read regexp*
+permissions to point to specific queue. For all three of them simply use queue name and set the permission.
 
-IMPORTANT: Make sure you click "Set permission" button after you’ve input queue names or else configuration won't
+image::../../images/docs_vcd_rabbitmq08_permissions.jpg[alt="Tuning permissions for RabbitMQ user."]
+
+IMPORTANT: Make sure you click *Set permission* button after you’ve input queue name or else configuration won't
 be stored and user won't be able to consume messages.
 
-NOTE: "Configure regexp" and "Write regexp" permissions are required due to a bug in underlying CloudForm's library
-that fails to connects to the queue unless full permission is given.
+NOTE: *Configure regexp* and *Write regexp* permissions are required due to a bug in underlying {cfme}'s library
+that fails to connects to the queue unless full permission is granted.
 
-=== Summary
-Following instructions above the RabbitMQ was configured in a way that it is safe to provide respective organization
-administrator with RabbitMQ endpoint URL and AMQP user's credentials. She will only be able to connect to the queue
-prepared for her organization and therefore only consume messages related to her organization.
+==== Share Credentials with {vcd-provider} Administrator
+Following above instructions you now have the RabbitMQ broker configured in a way that it's safe to provide
+respective {vcd} organization administrator with:
+
+* RabbitMQ broker IP/hostname address.
+* Credentials of the newly created user.
+
+Using credentials provided, she will only be able to connect to the queue prepared for her organization
+and therefore only consume messages related to her organization.
