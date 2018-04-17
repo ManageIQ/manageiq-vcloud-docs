@@ -1,39 +1,41 @@
-== Adding a new VMware vCloud Director cloud provider in Red Hat CloudForms
+== Adding a New {vcd-provider-title} to {cfme}
 
-This section describes how to add a new VMware vCloud Director cloud provider in CloudForms
-using web user interface. First login in your CloudForms interface.
+This section describes how to add a new {vcd-provider} to {cfme}
+using {cfme-gui}. First step is to login:
 
 image:../../images/docs_vcd_addPriovider00_front.jpg[alt="Login into CloudForms"]
 
-Then navigate to _Compute -> Clouds -> Providers_ page using the main navigaton on the left.
+Then navigate to *Compute -> Clouds -> Providers* page using the main navigation on the left.
 
 image:../../images/docs_vcd_addPriovider01_nav.jpg[alt="Add a New Cloud Provider"]
 
-Option _Configuration -> Add a new Cloud Provider_ appears in center menu. Pick it.
+Option *Configuration -> Add a New Cloud Provider* appears in center menu. Pick it.
 
 image:../../images/docs_vcd_addPriovider02_addNewMenu.jpg[alt="Choose menue option"]
 
-Opt-in for "VMware vCloud" provider type in a form that appears. Doing so will make other relevant form fields
+Opt-in for *VMware vCloud* provider type in a form that appears. Doing so will make other relevant form fields
 appear.
 
 image:../../images/docs_vcd_addPriovider03_vcd.jpg[alt="Add a New Cloud Provider"]
 
-Populate the rest of the form with appropriate data to grant CloudForms access to your VMware vCloud Director.
+Populate the rest of the form with appropriate data to grant {cfme} access to your {vcd-host}.
 
-NOTE: VMware vCloud Director cloud provider requires organization-level access. Therefore you need to provide
-both user credentials and organization name, hence "Username" field must be of form `username@organization`.
+[NOTE]
+======
+* {vcd-provider} requires organization-level access. Therefore you need to provide
+both user credentials and organization name, hence *Username* field must be of form `username@organization`.
 
-NOTE: Hostname can be either IP address or DNS record. It must not contain any URL path nor protocol prefix
-(HTTPS is assumed).
+* *Hostname (IPv4 or IPv6 address)* must not contain any URL path nor protocol prefix (HTTPS is assumed).
+======
 
 image:../../images/docs_vcd_addPriovider04_cred.jpg[alt="Add a New Cloud Provider"]
 
-Hit "Validate" when you're done. Validation needs to succeed prior adding the provider. Once green, you can opt-in
-to hit "Add" immediately to add provider without eventing support or you can open _Endpoints -> Events_ tab to
-fill-in your RabbitMQ credentials. Please see link:./vcd-ampq.adoc[Enable AMPQ Events in vCloudDirector] section to learn
-how RabbitMQ needs to be configured to make it work.
+Hit *Validate* when you're done. Validation needs to succeed prior adding the provider. Once green, you can opt-in
+to click *Add* immediately to add provider without eventing support or you can open *Endpoints -> Events* tab to
+fill-in your AMQP credentials. Please see <<EventMonitoringRabbitMQVCD>> section to learn
+how AMQP needs to be configured to make it work.
 
 image:../../images/docs_vcd_addPriovider05_amqp.jpg[alt="Add a New Cloud Provider"]
 
-Validate the _Events_ tab as well and eventually save the provider by clicking on "Add" button in bottom-right corner
-of the form.
+Validate the *Events* tab by pressing *Validate* button and eventually save the provider by clicking on *Add*
+button in bottom-right corner of the form.

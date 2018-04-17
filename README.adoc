@@ -1,5 +1,0 @@
-
-= vCloudDirector Documentation
-
-{{book.project.name}} {{book.project.version}}
-

@@ -1,5 +1,4 @@
 == Overview
 
-This documentation includes installation and configuration steps for VMware vCloud cloud provider plug-in into Red Hat
-CloudForms. Functionality covered by CloudForms plug-in for vCloudDirector provider is described in
-link:vcd-release-notes.adoc[Release Notes].
+This documentation provides installation and configuration steps required by {vcd-provider-full}.
+Functionality covered is described in <<ReleaseNotesVCD>> section.
