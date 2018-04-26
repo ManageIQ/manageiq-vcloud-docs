@@ -1,7 +1,7 @@
-== Adding a New {vcd-provider-title} to {cfme}
+== Adding a New {vcd-provider-title} to {product-title}
 
-This section describes how to add a new {vcd-provider} to {cfme}
-using {cfme-gui}. First step is to login:
+This section describes how to add a new {vcd-provider} to {product-title}
+using {product-gui}. First step is to login:
 
 image:../../images/docs_vcd_addPriovider00_front.jpg[alt="Login into CloudForms"]
 
@@ -18,7 +18,7 @@ appear.
 
 image:../../images/docs_vcd_addPriovider03_vcd.jpg[alt="Add a New Cloud Provider"]
 
-Populate the rest of the form with appropriate data to grant {cfme} access to your {vcd-host}.
+Populate the rest of the form with appropriate data to grant {product-title} access to your {vcd-host}.
 
 [NOTE]
 ======

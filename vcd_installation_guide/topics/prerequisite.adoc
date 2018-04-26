@@ -4,21 +4,21 @@ Following prerequisites need to be met to start using {vcd-provider-full}:
 
 * Valid organization must exist on {vcd-host}.
 * Administrative account access to {vcd}'s organization is required.
-* {cfme-appliance} must be able to reach {vcd-host} through at least one network interface.
+* {product-appliance} must be able to reach {vcd-host} through at least one network interface.
 
 == Tested Versions
 Below please find matrix of tested versions.
 
 [options="header"]
 |=====================================================================================
-| {cfme} | {vcd}
+| {product-title} | {vcd}
 | 4.5    | 9.0.0.7033385 (also known as 9.0.1)
 | 4.6    | 9.0.0.7033385 (also known as 9.0.1)
 |=====================================================================================
 
-== Installing {cfme}
-To install {cfme} please refer to
-link:https://access.redhat.com/documentation/en/red-hat-cloudforms/[{cfme} Installation Guide].
+== Installing {product-title}
+To install {product-title} please refer to
+link:https://access.redhat.com/documentation/en/red-hat-cloudforms/[{product-title} Installation Guide].
 
 == Installing {vcd}
 To install {vcd} please refer to
