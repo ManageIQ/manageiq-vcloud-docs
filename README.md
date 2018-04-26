@@ -1,11 +1,17 @@
-# VMware vCloud Director provider documentation
+# VMware vCloud Director provider documentation (maintainer notes)
 
-This repository contains documentation related to VMware vCloud Director provider.
-This document is intended for **documentation maintainers** and should not be included
-in the final PDF nor provided to CloudForms users.
+Repository contains documentation related to VMware vCloud Director provider. Documentation
+should be compiled into PDF and shipped to customers.
+
+**NOTE**: *README.md is intended for documentation maintainers only and should not be included
+in the final PDF nor shipped to customers. All .adoc files, however, are actually
+part of the documentation.*
 
 ## Compile into PDF
-Install [`asciidoctor-pdf`](https://asciidoctor.org/docs/asciidoctor-pdf) gem and use it like
+First navigate to [master.adoc](./vcd_installation_guide/master.adoc) and uncomment appropriate
+variable set (either ManageIQ or CloudForms).
+
+Then install [`asciidoctor-pdf`](https://asciidoctor.org/docs/asciidoctor-pdf) gem and use it like
 this to compile .adoc documentation into a PDF file: 
 
 ```bash
@@ -14,9 +20,9 @@ bundle exec asciidoctor-pdf vcd_installation_guide/master.adoc -o ./PREVIEW.pdf
 
 Command above will create file `./PREVIEW.pdf` that can be used as documentation preview.
 
-## Writing guides
+## Documentation guides
 When adding new sections to the documentation, we need to follow some guides in order to be
-as compatible with other CloudForms documentation as possible.
+as compatible with other documentation as possible.
 
 ### Menu navigation
 Menu navigation must be bolded and use `ITEM -> ITEM` syntax.
@@ -53,18 +59,18 @@ Wrong (because items are not nice sentences):
 - catalog item ordering with customization
 - order approval, which results in actual provisioning to happen
 
-### Use variable for product names `{vcd}`, `{cfme}` etc.
+### Use variable for product names `{vcd}`, `{product-title}` etc.
 It was a great mess with "vCloudDirector", "vCD", "VMware vCloudDirector" "vCloud" etc. therefore we
 introduced it as an **asciidoc variable**. It's defined in [master.adoc](vcd_installation_guide/master.adoc)
 along with some other handy variables that are available in all subsequent sections. Do use them!
 
 Also, please pay attention to difference between:
 
-- `:cfme:                    Red Hat CloudForms` (a product)
-- `:cfme-appliance:          CloudForms appliance` (a concrete virtual machine instance with CFME, addressible by IP)
+- `:product-title:           Red Hat ManageIQ` (a product)
+- `:product-appliance:       ManageIQ appliance` (a concrete virtual machine instance with MIQ, addressible by IP)
 - `:vcd:                     VMware vCloud Director` (a product)
 - `:vcd-host:                {vcd} host` (a concrete virtual machine instance with vCD, addressible by IP)
-- `:vcd-provider:            {vcd} provider` (refers to vCD integration into CFME - with inventoring, eventing and all)
+- `:vcd-provider:            {vcd} provider` (refers to vCD integration into MIQ - with inventoring, eventing and all)
 
 Do not mix them because it makes documentation very difficult to follow then.
 
@@ -90,7 +96,7 @@ in PDF. Use anchors instead.
 Correct: "More details on this matter can be found in \<\<VAppProvisioninVCD\>\> section."
 (link will be inserted upon PDF creation)
 
-Wrong: "More details on this matter can be found in link:vcd-vapp-provision.adoc[vApp Provisioning in vCloudDirector through Red Hat CloudForms] section."
+Wrong: "More details on this matter can be found in link:vcd-vapp-provision.adoc[vApp Provisioning in vCloudDirector through Red Hat ManageIQ] section."
 (because it uses direct link that won't work in PDF. Moreover, it hardcodes the link title. Using anchor uses
 the document title.)
 

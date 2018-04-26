@@ -1,6 +1,6 @@
 == {vcd-provider-full} Release Notes
 
-{cfme} supports {vcd} with limited functionality. The {vcd} coverage
+{product-title} supports {vcd} with limited functionality. The {vcd} coverage
 is limited to the following functionality:
 
 *  Authorization
@@ -14,18 +14,18 @@ exceptional is provisioning of a virtual machine which is only possible by insta
 template. More details on this matter can be found in <<VAppProvisioninVCD>> section.
 
 === Authorization
-Authorization is a basic functionality that creates a link from {cfme-appliance} to {vcd-host} and enables collecting
+Authorization is a basic functionality that creates a link from {product-appliance} to {vcd-host} and enables collecting
 data from {vcd-host}. Authorization is possible through {vcd}'s *organization* (tenant) accounts. More
 details on adding a new provider are described in <<AddingAVMwareVCD>> section.
 
 === Inventory
 {vcd-provider} inventories {vcd}'s entities, e.g. virtual machines, and persists them
-into {cfme}' database. There is a gap between how {vcd} names entities and how are they named in
-{cfme}. Below please find a mapping between the two.
+into {product-title}' database. There is a gap between how {vcd} names entities and how are they named in
+{product-title}. Below please find a mapping between the two.
 
 [options="header",alt="Cloud provider entity mapping"]
 |=====================================================================================
-| CloudForms Convention.                   | {vcd} Convention.
+| {product-title_short} Convention.        | {vcd} Convention.
 | Instance                                 | Virtual Machine
 | Image                                    | Virtual Machine Inside vApp Template
 | Orchestration Stack                      | vApp
@@ -66,13 +66,13 @@ The major difference of {vcd} from other platforms is that it provisions all res
 vApps. The images, virtual machines and vApp templates can be stored in catalogs, but only vApps can be provisioned directly.
 To provision other resources, a corresponding vApp needs to be built first.
 
-The {vcd-full} has limited functionality and does not support building or
-changing vApps from within {cfme} directly, therefore the vApp templates need to be created in advance within
+The {vcd-provider-full} has limited functionality and does not support building or
+changing vApps from within {product-title} directly, therefore the vApp templates need to be created in advance within
 {vcd-host}. Provisioning process of existing vApp template is described in <<VAppProvisioninVCD>> section.
 
 
 === Events
 Events from {vcd} can be published to AMQP broker which filters them per organization (tenant).
-{cfme} supports an option to provide AMQP credentials for {vcd-provider} in order to consume messages from
+{product-title} supports an option to provide AMQP credentials for {vcd-provider} in order to consume messages from
 AMQP broker. More details on how to configure eventing support can be found in <<EventMonitoringRabbitMQVCD>>
 section.

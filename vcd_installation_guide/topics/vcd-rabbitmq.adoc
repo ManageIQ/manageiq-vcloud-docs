@@ -20,7 +20,7 @@ image::../../images/docs_vcd_rabbitmq01_overview.jpg[alt="AMQP event monitoring 
 
 
 === Prerequisites
-We assume RabbitMQ message broker is deployed and accessible both from {cfme-appliance} as well as from
+We assume RabbitMQ message broker is deployed and accessible both from {product-appliance} as well as from
 {vcd-host}. Administrative access to RabbitMQ and {vcd} is required.
 
 === Enable AMQP Event Monitoring Option in {vcd}
@@ -74,13 +74,13 @@ image::../../images/docs_vcd_rabbitmq04_orgID.jpg[alt="ORG_UUID can be seen on t
 queues can be subscribed to *systemExchange* exchange, each of them will receive replica of all messages.
 
 Steps below describe how to create a new AMQP queue and subscribe it to *systemExchange* exchange in a way that
-only messages for specific organization are delievered to it. {cfme} then consumes messages from the queue to perform event-based actions.
+only messages for specific organization are delievered to it. {product-title} then consumes messages from the queue to perform event-based actions.
 
 NOTE: Steps below demonstrate AMQP queue configuration via Web GUI, but all the configuration can also be
 done via CLI.
 
 .Create Queue with Predefined Name
-Follow steps below to create a queue with predefined name so that {cfme} will be able to connect and
+Follow steps below to create a queue with predefined name so that {product-title} will be able to connect and
 consume messages.
 
 Login into RabbitMQ broker Web GUI with administrative user and navigate to *Queues* tab to add a new queue.
@@ -89,9 +89,9 @@ Name it `queue-<ORG_UUID>` and leave all other parameters on default.
 
 image::../../images/docs_vcd_rabbitmq05_setQueue.jpg[alt="Adding a queue with predefined name to RabbitMQ. Queue name is important since user permissions are given based on queue names."]
 
-IMPORTANT: Please set parameters exactly as shown in the screenshot above, otherwise {cfme}
+IMPORTANT: Please set parameters exactly as shown in the screenshot above, otherwise {product-title}
 won't be able to consume messages. If you accidentally, for example, set auto delete to Yes instead No,
-{cfme} won't be able to connect.
+{product-title} won't be able to connect.
 
 .Subscribe Queue to *systemExchange* Exchange
 Follow steps below to subscribe newly created queue to *systemExchange* exchange so that queue will start receiving
@@ -110,8 +110,8 @@ Your queue will now receive all messages (events, notifications) regarding speci
 
 ==== Prepare RabbitMQ User for the Organization
 Having a working queue with predefined name configured, we only need to provide authentication for it yet so that
-{cfme} will be able to connect. For this reason we create a new RabbitMQ user and assign it just
-enough permissions to access the one queue it needs. Eventually we'll pass this credentials to {cfme}
+{product-title} will be able to connect. For this reason we create a new RabbitMQ user and assign it just
+enough permissions to access the one queue it needs. Eventually we'll pass this credentials to {product-title}
 in order to grant access required for eventing.
 
 .Create RabbitMQ User
@@ -122,7 +122,7 @@ NOTE: User without any tags won't be able to even access RabbitMQ Web UI.
 
 image::../../images/docs_vcd_rabbitmq07_orgUser.jpg[alt="Adding a new RabbitMQ user without any tags."]
 
-NOTE: Credentials used at this step will need to be entered to the {cfme} because {cfme} will be
+NOTE: Credentials used at this step will need to be entered to the {product-title} because {product-title} will be
 connecting to the one queue accessible to this user. Please see <<AddingAVMwareVCD>> section for
 exact instructions on where to provide them.
 
@@ -135,7 +135,7 @@ image::../../images/docs_vcd_rabbitmq08_permissions.jpg[alt="Tuning permissions 
 IMPORTANT: Make sure you click *Set permission* button after you’ve input queue name or else configuration won't
 be stored and user won't be able to consume messages.
 
-NOTE: *Configure regexp* and *Write regexp* permissions are required due to a bug in underlying {cfme}'s library
+NOTE: *Configure regexp* and *Write regexp* permissions are required due to a bug in underlying {product-title}'s library
 that fails to connects to the queue unless full permission is granted.
 
 ==== Share Credentials with {vcd-provider} Administrator

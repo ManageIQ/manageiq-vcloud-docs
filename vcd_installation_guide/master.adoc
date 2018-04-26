@@ -8,20 +8,36 @@
 :numbered:
 
 //
+// Uncomment following lines when compiling locally. In production, those values are filled from
+// caller, see https://github.com/ManageIQ/manageiq_docs/tree/master/common/attributes.
+//
+
+//:product-title: ManageIQ
+//:product-title_short: ManageIQ
+//:product-title_short_l: mangeiq
+//:product-title_abbr: miq
+//:product-title_abbr_uc: MIQ
+
+//:product-title: Red Hat CloudForms
+//:product-title_short: CloudForms
+//:product-title_short_l: cloudforms
+//:product-title_abbr: cfme
+//:product-title_abbr_uc: CFME
+
+//
 // Handy shortcuts
 //
-:cfme:                    Red Hat CloudForms
-:cfme-gui:                CloudForms graphical interface
-:cfme-appliance:          CloudForms appliance
-:cfme-appliance-title:    CloudForms Appliance
-:cfme-console:            {cfme-appliance} console
+:product-gui:             {product-title_short} graphical interface
+:product-appliance:       {product-title_short} appliance
+:product-appliance_title: {product-title_short} Appliance
+:product-console:         {product-appliance} console
 :vcd:                     VMware vCloud Director
 :vcd-host:                {vcd} host
 :vcd-gui:                 {vcd-host}'s graphical interface
 :vcd-provider:            {vcd} provider
 :vcd-provider-title:      {vcd} Provider
-:vcd-provider-full:       {vcd-provider} for {cfme}
-:vcd-provider-full-title: {vcd-provider-title} for {cfme}
+:vcd-provider-full:       {vcd-provider} for {product-title}
+:vcd-provider-full-title: {vcd-provider-title} for {product-title}
 
 = {vcd-provider-full} Installation Guide
 

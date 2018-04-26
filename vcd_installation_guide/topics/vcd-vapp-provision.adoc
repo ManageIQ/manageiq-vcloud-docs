@@ -2,32 +2,32 @@
 
 *vApp template* is a basic entity of provisioning on {vcd}. It describes both virtual
 machines specifications and vApp networks specifications as well as connection between the two.
-In {cfme}, vApp template is inventoried as an orchestration template and can be assigned
+In {product-title}, vApp template is inventoried as an orchestration template and can be assigned
 a service dialog to allow provisioning.
 
-NOTE: {cfme} currently only supports vApp provisioning through vApp template instantiation.
+NOTE: {product-title} currently only supports vApp provisioning through vApp template instantiation.
 Composing a new vApp is not supported at the moment.
 
 === Prerequisites
-vApp provisioning process through {cfme} requires:
+vApp provisioning process through {product-title} requires:
 
 * Properly configured {vcd-host}:
  - Desired vApp template must be available in catalog owned by or shared by our organization. In case
-   of shared catalog, {cfme} settings must allow inventoring public images.
+   of shared catalog, {product-title} settings must allow inventoring public images.
  - vApp template should be prepared following some recommendations (please see below) to offer better
    experience to users during provisioning.
-* Properly configured {cfme-appliance}:
+* Properly configured {product-appliance}:
  - Setting *:get_public_images:* must be set to *true* in case we're using vApp template from shared
    catalog. vApp template won't be inventoried otherwise.
- - {vcd-provider} must be added to the {cfme} and inventory fetched.
+ - {vcd-provider} must be added to the {product-title} and inventory fetched.
 
 Following guide assumes {vcd-provider} inventory is successfully fetched, meaning also
-vApp template is stored in {cfme} as an orchestration template. Please verify by navigating to
+vApp template is stored in {product-title} as an orchestration template. Please verify by navigating to
 *Services -> Catalogs* in the main menu and then examining *Orchestration Templates -> vApp Templates*
 tab. Your vApp template should be listed there.
 
 === vApp Template Design Recommendations
-{cfme} is able to inventory and provision any vApp template obtained from {vcd-host}, but not all
+{product-title} is able to inventory and provision any vApp template obtained from {vcd-host}, but not all
 of them will be fully customizable due to following limitations:
 
 * **Adding/removing vApp networks not supported.** Service dialog supports editing any vApp network that is defined in
@@ -40,9 +40,9 @@ of them will be fully customizable due to following limitations:
   take this into account when preparing vApp template: rather connect all VM's NICs to isolated vApp
   networks and let user connect those to VDC/external networks during provisioning customization.
 * **Real-time validation not supported.** Service dialog will capture all the customization parameters
-  from user and send provisioning request to {cfme} backend, automation engine, where it will be
+  from user and send provisioning request to {product-title} backend, automation engine, where it will be
   executed. Potential problems with service dialog parameters (e.g. duplicated vApp name) will only be
-  visible via {cfme} logging mechanism. For this reason we recommend you to prepare vApp templates in
+  visible via {product-title} logging mechanism. For this reason we recommend you to prepare vApp templates in
   a way that minimizes probability of failing request:
 
    ** Make sure virtual machines actually boot and that they have VMware Tools already installed. If not, provisioning
@@ -51,9 +51,9 @@ of them will be fully customizable due to following limitations:
    ** Make sure VDC (virtual data center) has enough resources. If no IP addresses are available, for example,
    and user opts-in for IP allocation using IP pool, provisioning will fail.
 
-=== vApp Provisioning Process in {cfme}
+=== vApp Provisioning Process in {product-title}
 vApp provisioning is a three-step process. First step is catalog item preparation, carried out by {vcd-provider}'s owner. Catalog item represents orderable unit, ordering one is in fact vApp
-template provisioning through {cfme}. Second step is catalog item ordering, carried out by user.
+template provisioning through {product-title}. Second step is catalog item ordering, carried out by user.
 Final step is order approval, carried out by owner:
 
 . Catalog, service dialog and catalog item preparation (owner).
@@ -64,7 +64,7 @@ NOTE: New catalog item and service dialog need to be created for each *vApp temp
 can be added to the same catalog.
 
 ==== Catalog, Service Dialog and Catalog Item Preparation
-Login into {cfme-gui} where you have your {vcd-provider} added. Then follow these steps to
+Login into {product-gui} where you have your {vcd-provider} added. Then follow these steps to
 create a new catalog and catalog item (with service dialog) that users will be able to order.
 
 .Prepare Catalog
@@ -111,7 +111,7 @@ Eventually click *Add* to save catalog item. It becomes visible in catalog and t
 users to order it.
 
 ==== Catalog Item Ordering with Customization
-Login into {cfme} as a regular user. Then follow steps below to customize and order catalog item.
+Login into {product-title} as a regular user. Then follow steps below to customize and order catalog item.
 
 Navigate to *Services -> Catalogs* in the main menu and then open *Service Catalogs* tab. Select desired
 catalog item from the list and click *Order*:
