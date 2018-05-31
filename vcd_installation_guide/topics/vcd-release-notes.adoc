@@ -7,6 +7,7 @@ is limited to the following functionality:
 *  Inventory
 *  Power Operations
 *  Provisioning
+*  Reconfiguration
 *  Events
 
 Due to the limited support of {vcd}, some functionalities are not straightforward. The most
@@ -70,6 +71,20 @@ The {vcd-provider-full} has limited functionality and does not support building 
 changing vApps from within {product-title} directly, therefore the vApp templates need to be created in advance within
 {vcd-host}. Provisioning process of existing vApp template is described in <<VAppProvisioninVCD>> section.
 
+=== Reconfiguration
+All virtual machines that are inventoried by {vcd-provider-full} can be reconfigured. Following
+reconfiguration actions are supported:
+
+* Adjust number of CPU cores and number of CPU sockets.
+* Adjust memory size.
+* Increase disk size.
+* Delete disk.
+* Add a new disk.
+* Add a new network interface (NIC) and connect it to vApp network.
+* Remove network interface (NIC).
+
+More details on how to reconfigure a virtual machine and what limitations apply can be found
+ in <<ReconfigureVCD>> section.
 
 === Events
 Events from {vcd} can be published to AMQP broker which filters them per organization (tenant).
