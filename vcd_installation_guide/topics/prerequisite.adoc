@@ -16,6 +16,10 @@ Below please find matrix of tested versions.
 | 4.6    | 9.0.0.7033385 (also known as 9.0.1)
 |=====================================================================================
 
+NOTE: It has been reported that vApp provisioning does not work for vCloud Director versions prior
+to vCloud 5.6 due to massive API changes in vCloud API. Please use more recent vCloud versions e.g.
+9.0 or 9.1.
+
 == Installing {product-title}
 To install {product-title} please refer to
 link:https://access.redhat.com/documentation/en/red-hat-cloudforms/[{product-title} Installation Guide].
