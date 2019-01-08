@@ -1,3 +1,5 @@
+To view current PDF version of the documentation, click [here](./CURRENT.pdf).
+
 # VMware vCloud Director provider documentation (maintainer notes)
 
 Repository contains documentation related to VMware vCloud Director provider. Documentation
